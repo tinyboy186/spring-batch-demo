@@ -22,4 +22,13 @@ public class JobHolder {
   public Job countJob() {
     return jobBuilderFactory.get("countJob").start(countStep).build();
   }
+
+  @Bean
+  public Job calculateAgeAndCountJob() {
+    return jobBuilderFactory
+        .get("calculateAgeAndCountJob")
+        .start(calculateAgeStep)
+        .next(countStep)
+        .build();
+  }
 }

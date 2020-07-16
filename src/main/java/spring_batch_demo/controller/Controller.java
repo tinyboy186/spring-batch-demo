@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import spring_batch_demo.function.calculate_age.CalculateAgeHandler;
 import spring_batch_demo.function.calculate_age.CalculateAgeResponse;
+import spring_batch_demo.function.calculate_age_and_count.CalculateAgeAndCountHandler;
+import spring_batch_demo.function.calculate_age_and_count.CalculateAgeAndCountResponse;
 import spring_batch_demo.function.count.CountHandler;
 import spring_batch_demo.function.count.CountResponse;
 
@@ -14,6 +16,7 @@ import spring_batch_demo.function.count.CountResponse;
 public class Controller {
   @Autowired private CalculateAgeHandler calculateAgeHandler;
   @Autowired private CountHandler countHandler;
+  @Autowired private CalculateAgeAndCountHandler calculateAgeAndCountHandler;
 
   @GetMapping("/calculate-age")
   public ResponseEntity<CalculateAgeResponse> calculateAge() {
@@ -23,5 +26,10 @@ public class Controller {
   @GetMapping("/count/{age}")
   public ResponseEntity<CountResponse> count(@PathVariable long age) {
     return countHandler.handle(age);
+  }
+
+  @GetMapping("/calculate-age-and-count/{age}")
+  public ResponseEntity<CalculateAgeAndCountResponse> calculateAgeAndCount(@PathVariable long age) {
+    return calculateAgeAndCountHandler.handle(age);
   }
 }

@@ -11,9 +11,15 @@ import org.springframework.stereotype.Component;
 public class JobHolder {
   @Autowired private JobBuilderFactory jobBuilderFactory;
   @Autowired private Step calculateAgeStep;
+  @Autowired private Step countStep;
 
   @Bean
   public Job calculateAgeJob() {
     return jobBuilderFactory.get("calculateAgeJob").start(calculateAgeStep).build();
+  }
+
+  @Bean
+  public Job countJob() {
+    return jobBuilderFactory.get("countJob").start(countStep).build();
   }
 }

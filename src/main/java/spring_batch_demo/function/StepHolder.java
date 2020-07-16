@@ -11,6 +11,7 @@ import spring_batch_demo.entity.Person;
 import spring_batch_demo.function.calculate_age.CalculateAgeProcessor;
 import spring_batch_demo.function.calculate_age.CalculateAgeReader;
 import spring_batch_demo.function.calculate_age.CalculateAgeWriter;
+import spring_batch_demo.function.count.CountTasklet;
 
 @Component
 public class StepHolder {
@@ -21,6 +22,8 @@ public class StepHolder {
   @Autowired private CalculateAgeProcessor calculateAgeProcessor;
   @Autowired private CalculateAgeWriter calculateAgeWriter;
 
+  @Autowired private CountTasklet countTasklet;
+
   @Bean
   public Step calculateAgeStep() {
     return stepBuilderFactory
@@ -29,6 +32,15 @@ public class StepHolder {
         .reader(calculateAgeReader)
         .processor(calculateAgeProcessor)
         .writer(calculateAgeWriter)
+        .allowStartIfComplete(true)
+        .build();
+  }
+
+  @Bean
+  public Step countStep() {
+    return stepBuilderFactory
+        .get("countStep")
+        .tasklet(countTasklet)
         .allowStartIfComplete(true)
         .build();
   }

@@ -1,0 +1,10 @@
+server:
+  port: 8080
+
+spring:
+  batch:
+    job:
+      enabled: false
+
+batch:
+  chunk-size: 5

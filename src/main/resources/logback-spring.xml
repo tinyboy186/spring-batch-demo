@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <!-- Properties -->
+  <property name="pattern"
+            value="%date{ISO8601} %magenta([%thread]) %highlight(%level) %cyan(%logger{20}.%method\\(\\):%line) %message%n"/>
+
+  <!-- Appenders -->
+  <appender
+      name="appender"
+      class="ch.qos.logback.core.ConsoleAppender">
+    <!--  Encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder by default  -->
+    <encoder>
+      <pattern>${pattern}</pattern>
+    </encoder>
+  </appender>
+
+  <!--  Loggers  -->
+  <root level="INFO">
+    <appender-ref ref="appender"/>
+  </root>
+</configuration>
